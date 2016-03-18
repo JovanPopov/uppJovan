@@ -1,0 +1,18 @@
+Tools locations:
+C:\Users\Sinishisimus\tools\apache-maven-3.3.3
+C:\Users\Sinishisimus\tools\apache-tomcat-7.0.67 (localhost:8080)
+C:\Users\Sinishisimus\tools\james-2.3.2
+
+NOTES:
+Setovati "create" flag za kreiranje baze
+Setovati "update" flag za update baze
+<property name="hibernate.hbm2ddl.auto" value="update" />
+
+RUN PROJECT:
+Open command prompt in project root directory and type in the following command:
+mvn org.apache.tomcat.maven:tomcat7-maven-plugin:run > C:\log.txt
+Application will be accessible via the following url: http://localhost:8080/loanRequest/login
+
+APACHE JAMES:
+Added user - username: sinisa, password: sinisa -> this will enable us to send emails to: sinisa@localhost
+Emails are sent from activiti@localhost]

@@ -1,0 +1,32 @@
+Roles:
+
+PodnosilacTuzbe
+SefPisarnice
+Sudija
+PredsednikSuda
+Optuzeni
+Advokat
+ZamenikPredsednikaSuda
+SudskiVestak
+Svedok
+Zapisnicar
+
+Beans:
+
+Tuzba (podnosilacTuzbe, optuzeni, opisTuzbe)
+SudskiPredmet (sudskiBrojPredmeta-guid, datumPrijema, spisIzTuzbe-Tuzba, sve izjave i nalazi vestaka dobijeni u rocistu, zatvoren, arhiviran)
+Optuzeni (id, ime, brtanioc-Advokat)
+
+Tasks:
+
+1.PodnosenjeTuzbe-PodnosilacTuzbe-Tuzba-ManualTask
+2.EvidentiranjePrijemaSpisaUSudskuInstancu-SefPisarnice-SudskiPredmet-ManualTask
+3.OdrediSudiju-Sudija-ServiceTask
+4.UtvrdjivanjeNadleznostiSuda-Sudija-ManualTask
+4.1.IF (sudNijeNadlezan) -> ProslediPredmetNadleznomSudu-MailTask-END!!!
+5.PodnesenaTuzbaOpravdavaPokretanjePostupka-Sudija-ManualTask
+5.1.IF (tuzbaSeOdbacuje) -> NapisiObrazlozenjeOdbacivanjaTuzbe-Sudija-ManualTask-END!!!
+6.PrihvatiTuzbu-(kreirati korisnika u sistemu sa rolom Optuzeni)-AutomaticTask
+7.ObavestiOptuzenogOPokretanjuPostupka-MailTask
+8.ImenujBraniocaZaOptuzenog-Optuzeni-ManualTask
+9.NeophodnoIzuzeceSudije-Sudija-ManualTask

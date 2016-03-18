@@ -1,0 +1,42 @@
+id: pera
+firstName: Petar
+lastName: Petrovic
+email: pera@something.com
+password: pera
+groups:
+ - id: clanoviKomisije
+ - id: narucilac
+---
+id: zika
+firstName: Zika
+lastName: Zikic
+email: zika@something.com
+password: zika
+groups:
+ - id: pravnici
+---
+id: mita
+firstName: Mita
+lastName: Mitic
+email: mita@something.com
+password: mita
+groups:
+ - id: pravnici
+---
+id: steva
+firstName: Steva
+lastName: Stevic
+email: steva@something.com
+password: steva
+groups:
+ - id: strucnjaci
+---
+id: bora
+firstName: Bora
+lastName: Boric
+email: bora@something.com
+password: bora
+groups:
+ - id: strucnjaci
+ 
+ 

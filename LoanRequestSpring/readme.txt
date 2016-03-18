@@ -1,0 +1,1 @@
+narucilac poziva, pojednsotavljeno, napraviti sistem za pozivanje.
