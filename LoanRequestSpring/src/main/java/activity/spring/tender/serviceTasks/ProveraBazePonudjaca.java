@@ -23,7 +23,7 @@ public class ProveraBazePonudjaca implements JavaDelegate {
 		String id = user.getUsername();
 		List<Ponudjac> ponudjaciubazi=(List<Ponudjac>) execute.getVariable("ponudjaciubazi");
 		for(Ponudjac pon:ponudjaciubazi){
-			if(pon.getNaziv().equals(id)){
+			if(pon.getId().equals(id)){
 				ubazi=true;
 				break;
 			}

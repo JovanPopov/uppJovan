@@ -40,6 +40,9 @@ public class OglasiController {
 		ProcessInstance procDef=procDefl.get(0);
 		
 		String pid = procDef.getId();
+		//ovo radi takodje, za jednu instancu
+		//String pid = runtimeService.createProcessInstanceQuery().processDefinitionKey("loanRequest").singleResult().getId();
+		
 		
 		boolean oglasotvoreni= (Boolean) runtimeService.getVariable(pid, "oglasOtvoreniVidljiv");
 		boolean oglasKvalifikacije=(Boolean) runtimeService.getVariable(pid, "oglasKvalifikacijeVidljiv");

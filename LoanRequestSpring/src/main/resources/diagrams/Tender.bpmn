@@ -45,7 +45,7 @@
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${cena>400000 && cena<3000000}]]></conditionExpression>
     </sequenceFlow>
     <subProcess id="otvoreniProces" name="Otvoreni proces">
-      <multiInstanceLoopCharacteristics isSequential="false">
+      <multiInstanceLoopCharacteristics isSequential="true">
         <loopCardinality>${brojLotova}</loopCardinality>
       </multiInstanceLoopCharacteristics>
       <startEvent id="startevent2" name="Start"></startEvent>
@@ -219,7 +219,7 @@ execution.setVariable("oglasKvalifikacijeVidljiv", false);</script>
     </sequenceFlow>
     <sequenceFlow id="flow62" sourceRef="restriktivniProces-kvalifikacije" targetRef="exclusivegateway13"></sequenceFlow>
     <subProcess id="restriktivniProces" name="Restriktivni proces">
-      <multiInstanceLoopCharacteristics isSequential="false">
+      <multiInstanceLoopCharacteristics isSequential="true">
         <loopCardinality>${brojLotova}</loopCardinality>
       </multiInstanceLoopCharacteristics>
       <startEvent id="startevent4" name="Start"></startEvent>
