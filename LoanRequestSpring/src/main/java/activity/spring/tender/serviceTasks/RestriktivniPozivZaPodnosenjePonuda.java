@@ -30,6 +30,9 @@ public class RestriktivniPozivZaPodnosenjePonuda implements JavaDelegate  {
 		String[] tokens = vremeIstekaTajmeraTemp.split(" ");
 		String vremeIstekaTajmera = tokens[0] + "T" + tokens[1];
 		
+		execute.setVariable("ubazi", false);
+		execute.setVariable("potvrdaKomisije", "ne");
+		
 		execute.setVariable("vremeIstekaTajmera", vremeIstekaTajmera);
 		execute.setVariable("ponudjaciubazi", ponudjaciubazi);
 		execute.setVariable("tajmeristekao", tajmeristekao);

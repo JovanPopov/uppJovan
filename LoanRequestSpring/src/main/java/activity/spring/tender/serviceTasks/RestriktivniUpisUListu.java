@@ -17,30 +17,17 @@ public class RestriktivniUpisUListu implements JavaDelegate {
 		
 		//boolean var1 = (Boolean) execute.getVariable("dokumentacija");
 		
-		String var2 = "ne";
-		Boolean var3=false;
+		
 		boolean upisi=false;
-		try{
-			var2 = (String)execute.getVariable("potvrdaKomisije");
-		}catch(Exception e){			
-		}
-		try{			
-			var3 = (Boolean)execute.getVariable("ubazi");
-		}catch(Exception e){
-		}
-		if(var2==null) var2="ne";
-		if(var3==null) var3=false;
+		
+		String var2 = (String)execute.getVariable("potvrdaKomisije");
+				
+		boolean var3 = (Boolean)execute.getVariable("ubazi");
+		
+		
 		if(var2.equals("da") || var3) upisi=true;
 		
-		User user = null;
-		
-		try {
-			user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		}
-		catch (Exception ex) {
-			
-		}
-		
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String id = user.getUsername();
 		
 		
@@ -49,7 +36,7 @@ public class RestriktivniUpisUListu implements JavaDelegate {
 			List<Ponudjac> kandidati=(List<Ponudjac>) execute.getVariable("kandidati");
 			Ponudjac kandidat = null;
 			for(Ponudjac pon:kandidati)
-				if(pon.getNaziv().equals(id)) {
+				if(pon.getId().equals(id)) {
 					kandidat = 	pon;
 					break;
 				}

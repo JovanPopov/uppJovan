@@ -44,15 +44,8 @@ public class OglasiController {
 		boolean oglasotvoreni= (Boolean) runtimeService.getVariable(pid, "oglasOtvoreniVidljiv");
 		boolean oglasKvalifikacije=(Boolean) runtimeService.getVariable(pid, "oglasKvalifikacijeVidljiv");
 		boolean oglasRestriktivni=(Boolean) runtimeService.getVariable(pid, "oglasRestriktivniVidljiv");
-		List<Ponudjac> ponudjaciubazi=(List<Ponudjac>) runtimeService.getVariable(pid, "ponudjaci");
-		user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String id = user.getUsername();
-		for(Ponudjac pon:ponudjaciubazi){
-			if(pon.getNaziv().equals(id)) {
-				oglasotvoreni=false;
-				break;
-			}
-		}
+		
+	
 		
 		model.addAttribute("oglasOtvoreni",oglasotvoreni);
 		model.addAttribute("oglasKvalifikacije",oglasKvalifikacije);
@@ -66,6 +59,8 @@ public class OglasiController {
 	@RequestMapping(value="/oglasi/prijavaOtvoreni", method=RequestMethod.GET)
 	public String OglasiOtvoreni(ModelMap model){
 		User user;
+		String message="";
+		
 		//String pid = ApplicationController.pid;
 		List<ProcessInstance> procDefl = runtimeService.createProcessInstanceQuery().processDefinitionKey("loanRequest").list();
 		ProcessInstance procDef=procDefl.get(0);
@@ -80,11 +75,29 @@ public class OglasiController {
 		}
 		
 		String id = user.getUsername();
+		List<Ponudjac> ponudjaciubazi=(List<Ponudjac>) runtimeService.getVariable(pid, "ponudjaci");
+		//user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		//String id = user.getUsername();
+		for(Ponudjac pon:ponudjaciubazi){
+			if(pon.getId().equals(id)) {
+				message = "Ne mozete se prijaviti, vec se nalazite na listi!";
+				model.addAttribute("message", message);
+				return Oglasi(model);
+			}
+		}
 		Execution execution= runtimeService.createExecutionQuery().processInstanceId(pid).messageEventSubscriptionName("porukaOtvoreni").singleResult();
 		runtimeService.messageEventReceived("porukaOtvoreni", execution.getId(), null);
 		runtimeService.setVariable(pid, "ponudjac", id);
+		message = "Uspesno ste se prijavili!";
 		
-		return "application/oglasi";
+		
+		
+			
+
+		model.addAttribute("message", message);
+		return Oglasi(model);
+		
+		//return "application/oglasi";
 		
 		
 	}
@@ -97,7 +110,7 @@ public class OglasiController {
 		ProcessInstance procDef=procDefl.get(0);
 		
 		String pid = procDef.getId();
-		
+		String message="";
 		try {
 			user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		}
@@ -106,10 +119,24 @@ public class OglasiController {
 		}
 		
 		String id = user.getUsername();
+		List<Ponudjac> ponudjaciubazi=(List<Ponudjac>) runtimeService.getVariable(pid, "kandidati");
+		//user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		//String id = user.getUsername();
+		for(Ponudjac pon:ponudjaciubazi){
+			if(pon.getId().equals(id)) {
+				message = "Ne mozete se prijaviti, vec se nalazite na listi!";
+				model.addAttribute("message", message);
+				return Oglasi(model);
+			}
+		}
 		Execution execution= runtimeService.createExecutionQuery().processInstanceId(pid).messageEventSubscriptionName("porukaKvalifikacije").singleResult();
 		runtimeService.messageEventReceived("porukaKvalifikacije", execution.getId(), null);
 		
-		return "application/oglasi";
+		message = "Uspesno ste se prijavili!";
+		
+
+		model.addAttribute("message", message);
+		return Oglasi(model);
 		
 		
 	}
@@ -122,7 +149,7 @@ public class OglasiController {
 			ProcessInstance procDef=procDefl.get(0);
 			
 			String pid = procDef.getId();
-			
+			String message="";
 			try {
 				user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			}
@@ -130,12 +157,40 @@ public class OglasiController {
 				return "redirect:/login";
 			}
 			
-			String id = user.getUsername();
-			Execution execution= runtimeService.createExecutionQuery().processInstanceId(pid).messageEventSubscriptionName("porukaRestriktivni").singleResult();
-			runtimeService.messageEventReceived("porukaRestriktivni", execution.getId(), null);
-			runtimeService.setVariable(pid, "ponudjac", id);
 			
-			return "application/oglasi";
+			
+			String id = user.getUsername();
+			
+			List<Ponudjac> ponudjaciubazi=(List<Ponudjac>) runtimeService.getVariable(pid, "ponudjaci");
+			for(Ponudjac pon:ponudjaciubazi){
+				if(pon.getId().equals(id)) {
+					message = "Ne mozete se prijaviti, vec se nalazite na listi!";
+					model.addAttribute("message", message);
+					return Oglasi(model);
+				}
+			}
+			
+			List<Ponudjac> kandidati=(List<Ponudjac>) runtimeService.getVariable(pid, "kandidati");
+			for(Ponudjac pon:kandidati){
+				if(pon.getId().equals(id)) {
+					Execution execution= runtimeService.createExecutionQuery().processInstanceId(pid).messageEventSubscriptionName("porukaRestriktivni").singleResult();
+					runtimeService.messageEventReceived("porukaRestriktivni", execution.getId(), null);
+					runtimeService.setVariable(pid, "ponudjac", id);
+					message = "Uspesno ste se prijavili!";
+								
+
+					model.addAttribute("message", message);
+					return Oglasi(model);
+					
+					
+					
+					
+				}
+			}
+			
+			message = "Ne mozete se prijaviti, ne nalazite se na listi kandidata!";
+			model.addAttribute("message", message);
+			return Oglasi(model);
 			
 			
 		}

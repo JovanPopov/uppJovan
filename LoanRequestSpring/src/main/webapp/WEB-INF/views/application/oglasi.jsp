@@ -12,7 +12,7 @@
 	
 	
 	<body>
-	
+	<div class="message">${message}</div>
 	<c:if test="${oglasOtvoreni == true}">
 		<div>
 			<h1>Prijava na otvoreni konkurs</h1>
