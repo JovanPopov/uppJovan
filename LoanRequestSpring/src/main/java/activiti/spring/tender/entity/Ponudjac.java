@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
-public class Ponudjac implements Serializable {
+public class Ponudjac implements Serializable, Comparable {
 
 		
 		private String id;
@@ -71,6 +71,18 @@ public class Ponudjac implements Serializable {
 		public void setPonuda(long ponuda) {
 			this.ponuda = ponuda;
 		}
+
+		@Override
+		public int compareTo(Object arg0) {
+			 int compareage=(int) ((Ponudjac)arg0).getPonuda();
+		        /* For Ascending order*/
+		        return (int) (compareage-this.ponuda);
+		}
+
+	
+
+		
+		
 		
 		
 }

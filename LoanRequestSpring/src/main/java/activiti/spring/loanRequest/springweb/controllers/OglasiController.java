@@ -36,10 +36,9 @@ public class OglasiController {
 		//String pid = ApplicationController.pid;
 		//ProcessDefinition procDef = repositoryService.createProcessDefinitionQuery().processDefinitionKey("loanRequest").latestVersion().singleResult();
 		//ProcessDefinition procDef = repositoryService.createProcessDefinitionQuery().deploymentId(ApplicationController.pid).singleResult();
-		List<ProcessInstance> procDefl = runtimeService.createProcessInstanceQuery().processDefinitionKey("loanRequest").list();
-		ProcessInstance procDef=procDefl.get(0);
 		
-		String pid = procDef.getId();
+		
+		String pid = processInstance();
 		//ovo radi takodje, za jednu instancu
 		//String pid = runtimeService.createProcessInstanceQuery().processDefinitionKey("loanRequest").singleResult().getId();
 		
@@ -48,7 +47,7 @@ public class OglasiController {
 		boolean oglasKvalifikacije=(Boolean) runtimeService.getVariable(pid, "oglasKvalifikacijeVidljiv");
 		boolean oglasRestriktivni=(Boolean) runtimeService.getVariable(pid, "oglasRestriktivniVidljiv");
 		
-	
+		
 		
 		model.addAttribute("oglasOtvoreni",oglasotvoreni);
 		model.addAttribute("oglasKvalifikacije",oglasKvalifikacije);
@@ -64,11 +63,7 @@ public class OglasiController {
 		User user;
 		String message="";
 		
-		//String pid = ApplicationController.pid;
-		List<ProcessInstance> procDefl = runtimeService.createProcessInstanceQuery().processDefinitionKey("loanRequest").list();
-		ProcessInstance procDef=procDefl.get(0);
-		
-		String pid = procDef.getId();
+		String pid = processInstance();
 		
 		try {
 			user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -109,10 +104,7 @@ public class OglasiController {
 	@RequestMapping(value="/oglasi/prijavaKvalifikacije", method=RequestMethod.GET)
 	public String OglasiKvalifikacije(ModelMap model){
 		User user;
-		List<ProcessInstance> procDefl = runtimeService.createProcessInstanceQuery().processDefinitionKey("loanRequest").list();
-		ProcessInstance procDef=procDefl.get(0);
-		
-		String pid = procDef.getId();
+		String pid = processInstance();
 		String message="";
 		try {
 			user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -148,10 +140,7 @@ public class OglasiController {
 		@RequestMapping(value="/oglasi/prijavaRestriktivni", method=RequestMethod.GET)
 		public String OglasiRestrikvitni(ModelMap model){
 			User user;
-			List<ProcessInstance> procDefl = runtimeService.createProcessInstanceQuery().processDefinitionKey("loanRequest").list();
-			ProcessInstance procDef=procDefl.get(0);
-			
-			String pid = procDef.getId();
+			String pid = processInstance();
 			String message="";
 			try {
 				user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -195,6 +184,15 @@ public class OglasiController {
 			model.addAttribute("message", message);
 			return Oglasi(model);
 			
+			
+		}
+		
+		private String processInstance(){
+			
+			List<ProcessInstance> procDefl = runtimeService.createProcessInstanceQuery().processDefinitionKey("loanRequest").orderByProcessInstanceId().desc().list();
+			ProcessInstance procDef=procDefl.get(0);
+			
+			return procDef.getId();
 			
 		}
 

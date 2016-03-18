@@ -37,7 +37,50 @@
 			</table>
 			
 		</div>
+		
+		
+		<div>
+			<h1>Zavrsene instance</h1>
+			<table border="1">
+			<tr>
+			<td>Id</td>
+			<td>ProcessDefinitionId</td>
+			</tr>
+			
+			<c:forEach var="pr"			
+					items="${history}">
+					<tr>
+					<td>${pr.getId()}</td>
+					  <td>${pr.getProcessDefinitionId()}</td>
+					</tr>
+					</c:forEach>
+			</table>
+			
+		</div>
 	
+	
+			<div>
+			<h1>Tasks</h1>
+			<table border="1">
+			<tr>
+				<td>Id</td>
+				<td>Name</td>
+				<td>Assignee</td>
+				<td>ProcessInstanceId</td>
+			</tr>
+			
+			<c:forEach var="pr"			
+					items="${tasks}">
+					<tr>
+						<td>${pr.getId()}</td>
+					    <td>${pr.getName()}</td>
+					    <td>${pr.getAssignee()}</td>
+					    <td>${pr.getProcessInstanceId()}</td>
+					</tr>
+					</c:forEach>
+			</table>
+			
+		</div>
 	
 	
 	<!--za nazad -->

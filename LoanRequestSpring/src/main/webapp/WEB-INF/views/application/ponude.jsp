@@ -12,36 +12,30 @@
 	
 	
 	<body>
-	<div class="message">${message}</div>
-	<c:if test="${oglasOtvoreni == true}">
 		<div>
-			<h1>Prijava na otvoreni konkurs</h1>
-			<a href="./oglasi/prijavaOtvoreni">Prijava</a>
+			<h1>Ponude</h1>
 			
+			<c:if test="${ponudjaci.size() == 0}">
+				<div class="message">
+					Ponude ce biti javno dostupne kasnije
+			
+				</div>
+			</c:if>
+			
+			
+			<table border="1">
+				
+			<c:forEach var="pr"			
+					items="${ponudjaci}">
+					<tr>
+					    <td>${pr.getNaziv()}</td>
+					    <td>${pr.getPonuda()}</td>
+					</tr>
+					</c:forEach>
+			</table>
 		</div>
-	</c:if>
 	
 	
-	<c:if test="${oglasKvalifikacije == true}">
-		<div>
-			<h1>Prijava na kvalifikacije</h1>
-			<a href="./oglasi/prijavaKvalifikacije">Prijava</a>
-			
-		</div>
-	</c:if>
-	
-	
-	
-	<c:if test="${oglasRestriktivni == true}">
-		<div>
-			<h1>Prijava na restriktivni konkurs</h1>
-			<a href="./oglasi/prijavaRestriktivni">Prijava</a>
-			
-		</div>
-	</c:if>
-	
-	
-			
 	<!--za nazad -->
 		<div class="home">
 			<a href="${pageContext.request.contextPath}/application/welcome">Početna</a>

@@ -18,7 +18,10 @@
 		<br />
 		<a href="./oglasi">Oglasi</a>
 		<br />
-		<a href="./procesi">Pokrenuti procesi</a>
+		<a href="./ponude">Ponude</a>
+		<br />
+		<br />
+		<a href="./procesi">Procesi</a>
 		<br />
 		<br />
 		<a href="<c:url value="/j_spring_security_logout" />"> Logout</a>
