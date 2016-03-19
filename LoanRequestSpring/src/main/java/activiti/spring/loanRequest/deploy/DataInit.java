@@ -103,9 +103,12 @@ public class DataInit {
 		if (usersNum == 0)
 			initUsersYml();
 		
+		
+		
 		System.out.println("Broj grupa: " + identityService.createGroupQuery().count());
 		System.out.println("Broj korisnika: " + identityService.createUserQuery().count());
 		System.out.println("Broj korisnika u grupi strucnjaci:  " + identityService.createUserQuery().memberOfGroup("strucnjaci").count());
 		System.out.println("Broj korisnika u grupi pravnici:  " + identityService.createUserQuery().memberOfGroup("pravnici").count());
+		System.out.println("Broj korisnika u grupi clanovi komisije:  " + identityService.createUserQuery().memberOfGroup("clanoviKomisije").count());
 	}
 }

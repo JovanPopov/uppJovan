@@ -20,18 +20,22 @@ public class PostavljanjeKomisije implements JavaDelegate {
 		String ck2 = (String) execution.getVariable("clanKomisije2");
 		String ck3 = (String) execution.getVariable("clanKomisije3");
 		
-		List<User> clanoviKomisijeTemp1 = identityService.createUserQuery().memberOfGroup("clanoviKomisije").list();
 		
-		if(clanoviKomisijeTemp1.size()<3){
+		
+		
 		identityService.createMembership(ck1, "clanoviKomisije");
 		identityService.createMembership(ck2, "clanoviKomisije");
 		identityService.createMembership(ck3, "clanoviKomisije");
-		}
 		
-		List<User> clanoviKomisijeTemp = identityService.createUserQuery().memberOfGroup("clanoviKomisije").list();
 		List<String> clanoviKomisije = new ArrayList<String>();
-		for(User user : clanoviKomisijeTemp)
-			clanoviKomisije.add(user.getId());
+		clanoviKomisije.add(ck1);
+		clanoviKomisije.add(ck2);
+		clanoviKomisije.add(ck3);
+		
+		//List<User> clanoviKomisijeTemp = identityService.createUserQuery().memberOfGroup("clanoviKomisije").list();
+		
+		//for(User user : clanoviKomisijeTemp)
+		//	clanoviKomisije.add(user.getId());
 		
 		execution.setVariable("clanoviKomisije", clanoviKomisije);
 	}

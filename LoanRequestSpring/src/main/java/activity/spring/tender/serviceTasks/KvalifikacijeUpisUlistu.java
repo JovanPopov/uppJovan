@@ -23,7 +23,7 @@ public class KvalifikacijeUpisUlistu implements JavaDelegate{
 			ponudjac.setId(id);
 			ponudjac.setNaziv((String)execute.getVariable("nazivPonudjaca"));
 			ponudjac.setEmail((String)execute.getVariable("emailPonudjaca"));
-			ponudjac.setPonuda((Long)execute.getVariable("ponuda"));
+			
 			
 			kandidati.add(ponudjac);
 			

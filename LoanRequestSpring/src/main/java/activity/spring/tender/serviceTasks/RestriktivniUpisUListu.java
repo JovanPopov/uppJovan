@@ -42,6 +42,7 @@ public class RestriktivniUpisUListu implements JavaDelegate {
 				}
 			Ponudjac ponudjac = kandidat;
 			ponudjac.setDokumentacija(true);
+			ponudjac.setPonuda((Long)execute.getVariable("ponuda"));
 			
 			ponudjaci.add(ponudjac);
 			execute.setVariable("ponudjaci", ponudjaci);
