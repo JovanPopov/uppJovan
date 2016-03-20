@@ -53,8 +53,8 @@ public class ZalbaController {
 		
 		if(value>45){
 			
-			runtimeService.deleteProcessInstance(processInstance(),"Zahtev za zastitu prava prihvacen");
-			message = "Zahtev prihvacen, proces zaustavljen!";
+			runtimeService.deleteProcessInstance(processInstance(),"Zahtev za zastitu prava usvojen");
+			message = "Zahtev usvojen, proces zaustavljen!";
 			model.addAttribute("message", message);
 			odgovor=false;
 			return zalba(model);

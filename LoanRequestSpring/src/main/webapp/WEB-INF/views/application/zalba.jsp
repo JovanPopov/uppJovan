@@ -21,10 +21,12 @@
 	<form name='f' action="<c:url value='/application/zalba/pokretanje' />" method='POST'>
 	
 				<fieldset>
-					Razlog Zalbe: <textarea rows="4" cols="50" type="text" name="razlog"></textarea>
+					Naziv podnosioca zahteva:<br> <input type="text"><br>
+					Razlog za podnosenje zahteva:<br> <textarea rows="4" cols="50" type="text" name="razlog"></textarea><br>
+					Dokumentacija: <input type="file" >
 							
 	
-						<br />
+						
 					
 					
 					<div class="submit">
@@ -33,7 +35,7 @@
 				</fieldset>
 			</form>
 	</c:if>
-	
+
 	<c:if test="${odgovor == true}">
 		<div>
 			<h1>Provera odgovora Republicke komisije</h1>
