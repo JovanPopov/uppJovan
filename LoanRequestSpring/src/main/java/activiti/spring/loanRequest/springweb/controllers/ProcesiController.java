@@ -46,7 +46,7 @@ public class ProcesiController {
 	@RequestMapping(value="/procesi/kill/{taskId}")
 	public String Kill(@PathVariable String taskId, ModelMap model){
 		
-		runtimeService.deleteProcessInstance(taskId, "za probu");
+		runtimeService.deleteProcessInstance(taskId, "Rucno ugasen");
 		
 				
 		return "redirect:/application/procesi";

@@ -20,9 +20,11 @@
 		<br />
 		<a href="./ponude">Ponude</a>
 		<br />
+		<a href="./zalba">Zastita prava</a>
 		<br />
-		<a href="./procesi">Procesi</a>
 		<br />
+		<a href="./procesi">Proces</a>
+		<br />		
 		<br />
 		<a href="<c:url value="/j_spring_security_logout" />"> Logout</a>
 	</body>

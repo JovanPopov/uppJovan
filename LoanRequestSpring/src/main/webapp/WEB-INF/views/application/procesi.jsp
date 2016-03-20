@@ -23,6 +23,7 @@
 			<tr>
 			<td>Id</td>
 			<td>ProcessDefinitionKey</td>
+			<td>isSuspended</td>
 			<td></td>
 			</tr>
 			
@@ -31,6 +32,7 @@
 					<tr>
 					<td>${pr.getId()}</td>
 					  <td>${pr.getProcessDefinitionKey()}</td>
+					  <td>${pr.isSuspended()}</td>
 					  <td><a href="./procesi/kill/${pr.getId()}">End instance</a></td>
 					</tr>
 					</c:forEach>
@@ -45,13 +47,15 @@
 			<tr>
 			<td>Id</td>
 			<td>ProcessDefinitionId</td>
+			<td>DeleteReason</td>
 			</tr>
 			
 			<c:forEach var="pr"			
 					items="${history}">
 					<tr>
 					<td>${pr.getId()}</td>
-					  <td>${pr.getProcessDefinitionId()}</td>
+					<td>${pr.getProcessDefinitionId()}</td>
+					<td>${pr.getDeleteReason()}</td>
 					</tr>
 					</c:forEach>
 			</table>
