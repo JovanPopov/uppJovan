@@ -22,7 +22,7 @@
 			<table border="1">
 			<tr>
 			<td>Id</td>
-			<td>ProcessDefinitionKey</td>
+			<td>ProcessDefinitionId</td>
 			<td>isSuspended</td>
 			<td></td>
 			</tr>
@@ -31,7 +31,7 @@
 					items="${listaInstanci}">
 					<tr>
 					<td>${pr.getId()}</td>
-					  <td>${pr.getProcessDefinitionKey()}</td>
+					  <td>${pr.getProcessDefinitionId()}</td>
 					  <td>${pr.isSuspended()}</td>
 					  <td><a href="./procesi/kill/${pr.getId()}">End instance</a></td>
 					</tr>

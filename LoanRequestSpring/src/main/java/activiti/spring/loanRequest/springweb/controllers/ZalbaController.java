@@ -21,6 +21,7 @@ public class ZalbaController {
 	RuntimeService runtimeService;
 	
 	boolean odgovor=false;
+	String processId="";
 	
 	@RequestMapping(value="/zalba")
 	public String zalba(ModelMap model){
@@ -34,8 +35,8 @@ public class ZalbaController {
 	
 	@RequestMapping(value="/zalba/pokretanje", method=RequestMethod.POST)
 	public String zalbaobrada(@RequestParam Map<String, String> params,ModelMap model){
-		
-		runtimeService.suspendProcessInstanceById(processInstance());
+		processId=processInstance();
+		runtimeService.suspendProcessInstanceById(processId);
 		odgovor=true;
 		return "redirect:/application/zalba";	
 		
@@ -53,14 +54,14 @@ public class ZalbaController {
 		
 		if(value>45){
 			
-			runtimeService.deleteProcessInstance(processInstance(),"Zahtev za zastitu prava usvojen");
+			runtimeService.deleteProcessInstance(processId,"Zahtev za zastitu prava usvojen");
 			message = "Zahtev usvojen, proces zaustavljen!";
 			model.addAttribute("message", message);
 			odgovor=false;
 			return zalba(model);
 			
 		}else{
-			runtimeService.activateProcessInstanceById(processInstance());
+			runtimeService.activateProcessInstanceById(processId);
 			message = "Zahtev odbijen, proces se nastavlja!";
 			model.addAttribute("message", message);
 			odgovor=false;

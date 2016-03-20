@@ -30,6 +30,7 @@ public class KvalifikacijePozivZaPodnosenjePonuda implements JavaDelegate {
 		
 		execute.setVariable("vremeIstekaTajmera", vremeIstekaTajmera);
 		execute.setVariable("kandidati", kandidati);
+		execute.setVariable("brojKandidata", 0);
 		execute.setVariable("tajmeristekao", tajmeristekao);
 		execute.setVariable("oglasKvalifikacijeVidljiv", true);
 	}

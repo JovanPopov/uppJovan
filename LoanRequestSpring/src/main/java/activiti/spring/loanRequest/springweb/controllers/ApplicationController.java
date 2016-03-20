@@ -196,9 +196,7 @@ public class ApplicationController {
 		
 		ProcessDefinition procDef = repositoryService.createProcessDefinitionQuery().processDefinitionKey("loanRequest").latestVersion().singleResult();
 		//takodje bi sada ovde trebala biti uradjena validacija
-		pid=procDef.getDeploymentId();
 		formService.submitStartFormData(procDef.getId(),params);
-		//pid =procDef.getId();	
 		String message = "Nova instanca je uspešno pokrenuta";
 		model.addAttribute("message", message);
 		return printWelcome(model);
