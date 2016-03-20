@@ -23,7 +23,7 @@
 			<tr>
 			<td>Id</td>
 			<td>ProcessDefinitionKey</td>
-			<td>isEnded</td>
+			<td></td>
 			</tr>
 			
 			<c:forEach var="pr"			
@@ -31,7 +31,7 @@
 					<tr>
 					<td>${pr.getId()}</td>
 					  <td>${pr.getProcessDefinitionKey()}</td>
-					  <td> ${pr.isEnded()}</td>
+					  <td><a href="./procesi/kill/${pr.getId()}">End instance</a></td>
 					</tr>
 					</c:forEach>
 			</table>

@@ -350,10 +350,9 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
     <serviceTask id="servicetask16" name="Inicijalizacija promenljivih" activiti:class="activity.spring.tender.serviceTasks.Inicijalizacija"></serviceTask>
     <sequenceFlow id="flow169" sourceRef="servicetask16" targetRef="servicetask1"></sequenceFlow>
     <sequenceFlow id="flow170" sourceRef="startevent1" targetRef="servicetask16"></sequenceFlow>
-    <sequenceFlow id="flow174" sourceRef="exclusivegateway1" targetRef="usertask1">
+    <sequenceFlow id="flow174" sourceRef="exclusivegateway1" targetRef="exclusivegateway2">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${cena>400000}]]></conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="flow175" sourceRef="usertask4" targetRef="exclusivegateway2"></sequenceFlow>
     <sequenceFlow id="flow176" sourceRef="servicetask15" targetRef="usertask2"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_loanRequest">
@@ -963,12 +962,9 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
         <omgdi:waypoint x="61.0" y="146.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow174" id="BPMNEdge_flow174">
-        <omgdi:waypoint x="430.0" y="149.0"></omgdi:waypoint>
-        <omgdi:waypoint x="459.0" y="146.0"></omgdi:waypoint>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="flow175" id="BPMNEdge_flow175">
-        <omgdi:waypoint x="1066.0" y="150.0"></omgdi:waypoint>
-        <omgdi:waypoint x="1150.0" y="151.0"></omgdi:waypoint>
+        <omgdi:waypoint x="410.0" y="169.0"></omgdi:waypoint>
+        <omgdi:waypoint x="787.0" y="254.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1170.0" y="171.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow176" id="BPMNEdge_flow176">
         <omgdi:waypoint x="689.0" y="146.0"></omgdi:waypoint>

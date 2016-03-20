@@ -11,6 +11,7 @@ import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import activiti.spring.tender.entity.Ponudjac;
@@ -42,4 +43,12 @@ public class ProcesiController {
 		return "application/procesi";
 	}
 
+	@RequestMapping(value="/procesi/kill/{taskId}")
+	public String Kill(@PathVariable String taskId, ModelMap model){
+		
+		runtimeService.deleteProcessInstance(taskId, "za probu");
+		
+				
+		return "redirect:/application/procesi";
+	}
 }
