@@ -17,9 +17,9 @@ public class Reset {
 		
 		
 		// TODO Auto-generated method stub
-		List<User> clanoviKomisijeTemp = identityService.createUserQuery().memberOfGroup("clanoviKomisije").list();
-		for(User user : clanoviKomisijeTemp)
-			identityService.deleteMembership(user.getId(), "clanoviKomisije");
+		//List<User> clanoviKomisijeTemp = identityService.createUserQuery().memberOfGroup("clanoviKomisije").list();
+		//for(User user : clanoviKomisijeTemp)
+			//identityService.deleteMembership(user.getId(), "clanoviKomisije");
 		
 		identityService.createMembership("pera","clanoviKomisije");
 		System.out.println("Broj korisnika u grupi clanovi komisije:  " + identityService.createUserQuery().memberOfGroup("clanoviKomisije").count());

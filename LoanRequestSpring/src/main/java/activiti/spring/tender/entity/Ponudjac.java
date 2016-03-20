@@ -11,7 +11,6 @@ import javax.persistence.Table;
 
 public class Ponudjac implements Serializable, Comparable {
 
-		
 		private String id;
 		private String naziv;
 		
@@ -32,6 +31,7 @@ public class Ponudjac implements Serializable, Comparable {
 			// TODO Auto-generated constructor stub
 		}
 
+		
 		public String getId(){
 			return id;
 		}

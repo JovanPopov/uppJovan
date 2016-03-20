@@ -342,7 +342,7 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
     <sequenceFlow id="flow106" sourceRef="usertask20" targetRef="otvoreniProces"></sequenceFlow>
     <endEvent id="endevent10" name="End"></endEvent>
     <sequenceFlow id="flow111" sourceRef="boundarytimer2" targetRef="endevent10"></sequenceFlow>
-    <userTask id="usertask20" name="Narucilac poziva " activiti:candidateGroups="narucilac"></userTask>
+    <userTask id="usertask20" name="Narucilac poziva(nabavka male vrednosti)" activiti:candidateGroups="narucilac"></userTask>
     <serviceTask id="servicetask15" name="Postavljanje komisije" activiti:class="activity.spring.tender.serviceTasks.PostavljanjeKomisije"></serviceTask>
     <sequenceFlow id="flow148" sourceRef="usertask1" targetRef="servicetask15"></sequenceFlow>
     <endEvent id="endevent11" name="End"></endEvent>

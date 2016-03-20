@@ -18,21 +18,24 @@ public class Inicijalizacija implements JavaDelegate  {
 		IdentityService identityService = execution.getEngineServices().getIdentityService();
 		
 		List<Ponudjac> ponudjaciSortirano = new ArrayList<Ponudjac>(); 
-		
-		boolean oglasOtvoreniVidljiv=false;
-		execution.setVariable("oglasOtvoreniVidljiv", oglasOtvoreniVidljiv);
-		
-		boolean oglasKvalifikacijeVidljiv=false;
-		execution.setVariable("oglasKvalifikacijeVidljiv", oglasKvalifikacijeVidljiv);
-		
-		boolean oglasRestriktivniVidljiv=false;
-		execution.setVariable("oglasRestriktivniVidljiv", oglasRestriktivniVidljiv);
+
+		execution.setVariable("oglasOtvoreniVidljiv", false);
+		execution.setVariable("oglasKvalifikacijeVidljiv", false);
+		execution.setVariable("oglasRestriktivniVidljiv", false);
 		
 		execution.setVariable("ponudjaciSortirano", ponudjaciSortirano);
 		
 		//List<User> clanoviKomisijeTemp = identityService.createUserQuery().memberOfGroup("clanoviKomisije").list();
 		//for(User user : clanoviKomisijeTemp)
 			//identityService.deleteMembership(user.getId(), "clanoviKomisije");
+		
+		//List<User> clanoviKomisijeTemp = identityService.createUserQuery().memberOfGroup("clanoviKomisije").list();
+		//for(User user : clanoviKomisijeTemp)
+		//	identityService.deleteMembership(user.getId(), "clanoviKomisije");
+		
+		//identityService.createMembership("pera","clanoviKomisije");
+		
+		
 	}
 
 }

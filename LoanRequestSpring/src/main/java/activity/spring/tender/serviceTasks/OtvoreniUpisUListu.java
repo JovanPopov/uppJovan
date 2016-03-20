@@ -19,7 +19,7 @@ public class OtvoreniUpisUListu implements JavaDelegate {
 		
 		String var2 = "ne";
 		Boolean var3=false;
-		boolean upisi=true;
+		boolean upisi=false;
 		//try{
 			var2 = (String)execute.getVariable("potvrdaKomisije");
 		//}catch(Exception e){			
@@ -30,7 +30,7 @@ public class OtvoreniUpisUListu implements JavaDelegate {
 	//	}
 	//	if(var2==null) var2="ne";
 	//	if(var3==null) var3=false;
-		//if(var2.equals("da") || var3) upisi=true;
+		if(var2.equals("da") || var3) upisi=true;
 		
 			User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			String id = user.getUsername();

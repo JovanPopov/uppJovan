@@ -1,0 +1,1 @@
+insert into upp_loanrequest.bazaponudjac values(1,true,"mitinmejl@localhost.com","mita","Mita");
