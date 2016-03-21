@@ -23,12 +23,12 @@ public class KvalifikacijePozivZaPodnosenjePonuda implements JavaDelegate {
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
-		Date newDate = DateUtils.addMinutes(date, 2);		
+		Date newDate = DateUtils.addMinutes(date, 4);		
 		String vremeIstekaTajmeraTemp = dateFormat.format(newDate);
 		String[] tokens = vremeIstekaTajmeraTemp.split(" ");
 		String vremeIstekaTajmera = tokens[0] + "T" + tokens[1];
 		
-		execute.setVariable("vremeIstekaTajmera", vremeIstekaTajmera);
+		execute.setVariable("tajmerKvalifikacije", vremeIstekaTajmera);
 		execute.setVariable("kandidati", kandidati);
 		execute.setVariable("brojKandidata", 0);
 		execute.setVariable("tajmeristekao", tajmeristekao);

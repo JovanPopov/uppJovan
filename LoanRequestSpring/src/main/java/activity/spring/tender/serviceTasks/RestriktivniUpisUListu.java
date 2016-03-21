@@ -30,13 +30,14 @@ public class RestriktivniUpisUListu implements JavaDelegate {
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String id = user.getUsername();
 		
+		String p=(String) execute.getVariable("pon");
 		
 		if(upisi){
 			List<Ponudjac> ponudjaci=(List<Ponudjac>) execute.getVariable("ponudjaci");
 			List<Ponudjac> kandidati=(List<Ponudjac>) execute.getVariable("kandidati");
 			Ponudjac kandidat = null;
 			for(Ponudjac pon:kandidati)
-				if(pon.getId().equals(id)) {
+				if(pon.getId().equals(p)) {
 					kandidat = 	pon;
 					break;
 				}

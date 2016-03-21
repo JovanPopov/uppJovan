@@ -32,6 +32,7 @@ public class PrijavaListener implements TaskListener{
 		
 		//String pondujac = (String) runtimeService.getVariable(delegeTask.getProcessInstanceId(), "ponudjac");
 		delegeTask.setAssignee(id);
+		delegeTask.setVariable("pon", id);
 	}
 
 }

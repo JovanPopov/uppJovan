@@ -23,13 +23,18 @@ public class OtvoreniPozivZaPodnosenjePonuda implements JavaDelegate{
 		Ponudjac mita=new Ponudjac("mita","Mita","mitinmejl", true, 10000000);
 		ponudjaciubazi.add(mita);
 		
-		String tajmer =tajmer();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		Date newDate = DateUtils.addMinutes(date, 4);		
+		String vremeIstekaTajmeraTemp = dateFormat.format(newDate);
+		String[] tokens = vremeIstekaTajmeraTemp.split(" ");
+		String timer = tokens[0] + "T" + tokens[1];
 		
-		
+				
 		execute.setVariable("ubazi", false);
 		execute.setVariable("potvrdaKomisije", "ne");
 		
-		execute.setVariable("vremeIstekaTajmera", tajmer);
+		execute.setVariable("tajmerOtvoreni", timer);
 		execute.setVariable("ponudjaciubazi", ponudjaciubazi);
 		execute.setVariable("tajmeristekao", tajmeristekao);
 		execute.setVariable("ponudjaci", ponudjaci);

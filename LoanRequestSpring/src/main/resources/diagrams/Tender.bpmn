@@ -38,12 +38,7 @@
         <activiti:formProperty id="dokum" name="Dokumentacija" type="upload"></activiti:formProperty>
       </extensionElements>
     </userTask>
-    <sequenceFlow id="flow6" sourceRef="usertask2" targetRef="usertask3"></sequenceFlow>
-    <userTask id="usertask4" name="Komisija utvrdjuje procenjenu vrednost" activiti:candidateGroups="clanoviKomisije" activiti:formKey="executeTask">
-      <extensionElements>
-        <activiti:formProperty id="cena" name="Procenjena vrednost" type="long"></activiti:formProperty>
-      </extensionElements>
-    </userTask>
+    <userTask id="usertask4" name="Komisija utvrdjuje procenjenu vrednost" activiti:candidateGroups="clanoviKomisije" activiti:formKey="executeTask"></userTask>
     <sequenceFlow id="flow7" sourceRef="usertask3" targetRef="usertask4"></sequenceFlow>
     <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway"></exclusiveGateway>
     <sequenceFlow id="flow9" name="nabavka male vrednosti" sourceRef="exclusivegateway2" targetRef="usertask20">
@@ -78,7 +73,7 @@
       <serviceTask id="servicetask2" name="Provera da li je u bazi" activiti:class="activity.spring.tender.serviceTasks.ProveraBazePonudjaca"></serviceTask>
       <userTask id="usertask7" name="Pondudjac podnosi dokumentaciju" activiti:assignee="${ponudjac}" activiti:formKey="executeTask">
         <extensionElements>
-          <activiti:formProperty id="dokumentacija" name="Dokumetnacija" type="boolean" expression="upload" default="false"></activiti:formProperty>
+          <activiti:formProperty id="dokumentacija" name="Dokumetnacija" type="upload" default="false"></activiti:formProperty>
         </extensionElements>
       </userTask>
       <sequenceFlow id="flow23" sourceRef="exclusivegateway6" targetRef="usertask7">
@@ -121,7 +116,7 @@
       <serviceTask id="servicetask12" name="Narucilac objavljuje poziv za podnosenje ponuda" activiti:class="activity.spring.tender.serviceTasks.OtvoreniPozivZaPodnosenjePonuda"></serviceTask>
       <intermediateCatchEvent id="timerintermediatecatchevent2" name="TimerCatchEvent">
         <timerEventDefinition>
-          <timeDuration>PT20S</timeDuration>
+          <timeDate>${tajmerOtvoreni}</timeDate>
         </timerEventDefinition>
       </intermediateCatchEvent>
       <scriptTask id="scripttask3" name="Tajmer istekao/oglas sakriven" scriptFormat="javascript" activiti:autoStoreVariables="false">
@@ -157,7 +152,7 @@ execution.setVariable("oglasOtvoreniVidljiv", false);</script>
       <eventBasedGateway id="eventgateway3" name="Event Gateway"></eventBasedGateway>
       <intermediateCatchEvent id="timerintermediatecatchevent1" name="TimerCatchEvent">
         <timerEventDefinition>
-          <timeDuration>PT20S</timeDuration>
+          <timeDate>${tajmerKvalifikacije}</timeDate>
         </timerEventDefinition>
       </intermediateCatchEvent>
       <sequenceFlow id="flow47" sourceRef="eventgateway3" targetRef="timerintermediatecatchevent1"></sequenceFlow>
@@ -278,7 +273,7 @@ execution.setVariable("oglasKvalifikacijeVidljiv", false);</script>
       <sequenceFlow id="flow135" sourceRef="servicetask14" targetRef="eventgateway4"></sequenceFlow>
       <intermediateCatchEvent id="timerintermediatecatchevent3" name="TimerCatchEvent">
         <timerEventDefinition>
-          <timeDuration>PT20S</timeDuration>
+          <timeDate>${tajmerRestriktivni}</timeDate>
         </timerEventDefinition>
       </intermediateCatchEvent>
       <sequenceFlow id="flow136" sourceRef="eventgateway4" targetRef="timerintermediatecatchevent3"></sequenceFlow>
@@ -355,6 +350,7 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
     </sequenceFlow>
     <sequenceFlow id="flow176" sourceRef="servicetask15" targetRef="usertask2"></sequenceFlow>
     <sequenceFlow id="flow177" sourceRef="usertask4" targetRef="exclusivegateway2"></sequenceFlow>
+    <sequenceFlow id="flow178" sourceRef="usertask2" targetRef="usertask3"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_loanRequest">
     <bpmndi:BPMNPlane bpmnElement="loanRequest" id="BPMNPlane_loanRequest">
@@ -598,10 +594,6 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
       <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
         <omgdi:waypoint x="410.0" y="129.0"></omgdi:waypoint>
         <omgdi:waypoint x="410.0" y="75.0"></omgdi:waypoint>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
-        <omgdi:waypoint x="818.0" y="147.0"></omgdi:waypoint>
-        <omgdi:waypoint x="834.0" y="153.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
         <omgdi:waypoint x="939.0" y="153.0"></omgdi:waypoint>
@@ -972,6 +964,10 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
       <bpmndi:BPMNEdge bpmnElement="flow177" id="BPMNEdge_flow177">
         <omgdi:waypoint x="1066.0" y="150.0"></omgdi:waypoint>
         <omgdi:waypoint x="1150.0" y="151.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow178" id="BPMNEdge_flow178">
+        <omgdi:waypoint x="818.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="834.0" y="153.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

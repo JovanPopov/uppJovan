@@ -19,8 +19,8 @@ public class KvalifikacijeUpisUlistu implements JavaDelegate{
 			
 			User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			String id = user.getUsername();
-			
-			ponudjac.setId(id);
+			String p=(String) execute.getVariable("pon");
+			ponudjac.setId(p);
 			ponudjac.setNaziv((String)execute.getVariable("nazivPonudjaca"));
 			ponudjac.setEmail((String)execute.getVariable("emailPonudjaca"));
 			

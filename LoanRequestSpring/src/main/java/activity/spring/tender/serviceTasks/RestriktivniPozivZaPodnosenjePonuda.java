@@ -25,7 +25,7 @@ public class RestriktivniPozivZaPodnosenjePonuda implements JavaDelegate  {
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
-		Date newDate = DateUtils.addMinutes(date, 2);		
+		Date newDate = DateUtils.addMinutes(date, 4);		
 		String vremeIstekaTajmeraTemp = dateFormat.format(newDate);
 		String[] tokens = vremeIstekaTajmeraTemp.split(" ");
 		String vremeIstekaTajmera = tokens[0] + "T" + tokens[1];
@@ -33,7 +33,7 @@ public class RestriktivniPozivZaPodnosenjePonuda implements JavaDelegate  {
 		execute.setVariable("ubazi", false);
 		execute.setVariable("potvrdaKomisije", "ne");
 		
-		execute.setVariable("vremeIstekaTajmera", vremeIstekaTajmera);
+		execute.setVariable("tajmerRestriktivni", vremeIstekaTajmera);
 		execute.setVariable("ponudjaciubazi", ponudjaciubazi);
 		execute.setVariable("tajmeristekao", tajmeristekao);
 		execute.setVariable("ponudjaci", ponudjaci);

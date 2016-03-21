@@ -36,9 +36,10 @@ public class OtvoreniUpisUListu implements JavaDelegate {
 			String id = user.getUsername();
 		
 		if(upisi){
+			String p=(String) execute.getVariable("pon");
 			List<Ponudjac> ponudjaci=(List<Ponudjac>) execute.getVariable("ponudjaci");
 			Ponudjac ponudjac = new Ponudjac();
-			ponudjac.setId(id);
+			ponudjac.setId(p);
 			ponudjac.setNaziv((String)execute.getVariable("nazivPonudjaca"));
 			ponudjac.setEmail((String)execute.getVariable("emailPonudjaca"));
 			ponudjac.setPonuda((Long)execute.getVariable("ponuda"));

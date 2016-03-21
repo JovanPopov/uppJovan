@@ -103,12 +103,14 @@ public class OglasiController {
 		
 		String id = user.getUsername();
 		List<Ponudjac> ponudjaciubazi=(List<Ponudjac>) runtimeService.getVariable(pid, "kandidati");
+		if(!ponudjaciubazi.isEmpty()){
 		for(Ponudjac pon:ponudjaciubazi){
 			if(pon.getId().equals(id)) {
 				message = "Ne mozete se prijaviti, vec se nalazite na listi!";
 				model.addAttribute("message", message);
 				return Oglasi(model);
 			}
+		}
 		}
 		Execution execution= runtimeService.createExecutionQuery().processInstanceId(pid).messageEventSubscriptionName("porukaKvalifikacije").singleResult();
 		runtimeService.messageEventReceived("porukaKvalifikacije", execution.getId(), null);

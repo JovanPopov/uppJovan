@@ -29,9 +29,9 @@ public class Inicijalizacija implements JavaDelegate  {
 		//for(User user : clanoviKomisijeTemp)
 			//identityService.deleteMembership(user.getId(), "clanoviKomisije");
 		
-		//List<User> clanoviKomisijeTemp = identityService.createUserQuery().memberOfGroup("clanoviKomisije").list();
-		//for(User user : clanoviKomisijeTemp)
-		//	identityService.deleteMembership(user.getId(), "clanoviKomisije");
+		List<User> clanoviKomisijeTemp = identityService.createUserQuery().memberOfGroup("clanoviKomisije").list();
+		for(User user : clanoviKomisijeTemp)
+			identityService.deleteMembership(user.getId(), "clanoviKomisije");
 		
 		//identityService.createMembership("pera","clanoviKomisije");
 		

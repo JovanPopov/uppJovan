@@ -26,7 +26,7 @@ public class DataInit {
 	/* Properties */
 	
 	private static final String groupsPath ="./src/main/resources/properties/groups.yml";
-	private static final String usersPath ="./src/main/resources/properties/users2.yml";
+	private static final String usersPath ="./src/main/resources/properties/users.yml";
 	private static ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 	private static IdentityService identityService = processEngine.getIdentityService(); 
 	private static RuntimeService runtimeService = processEngine.getRuntimeService();
