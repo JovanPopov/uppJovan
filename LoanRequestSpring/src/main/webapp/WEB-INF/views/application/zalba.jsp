@@ -21,8 +21,8 @@
 	<form name='f' action="<c:url value='/application/zalba/pokretanje' />" method='POST'>
 	
 				<fieldset>
-					Naziv podnosioca zahteva:<br> <input type="text"><br>
-					Razlog za podnosenje zahteva:<br> <textarea rows="4" cols="50" type="text" name="razlog"></textarea><br>
+					Naziv podnosioca zahteva:<br> <input type="text" required><br>
+					Razlog za podnosenje zahteva:<br> <textarea rows="4" cols="50" type="text" name="razlog" required></textarea><br>
 					Dokumentacija: <input type="file" >
 							
 	
