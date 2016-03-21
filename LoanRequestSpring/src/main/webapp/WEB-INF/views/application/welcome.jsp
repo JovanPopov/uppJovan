@@ -17,10 +17,14 @@
 		<div class="message">${message}</div>
 		<a href="./tasksList">Pregled zadataka</a>
 		<br />
+		<c:if test="${narucilac}">
 		<a href="./newInstance">Pokretanje nove instance</a>
 		<br />
+		</c:if>
+		<c:if test="${ponudjac}">
 		<a href="./oglasi">Oglasi</a>
 		<br />
+		</c:if>
 		<a href="./ponude">Ponude</a>
 		<br />
 		<a href="./zalba">Zastita prava</a>

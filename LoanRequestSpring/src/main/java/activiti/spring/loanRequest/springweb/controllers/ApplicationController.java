@@ -207,8 +207,26 @@ public class ApplicationController {
 		catch (Exception ex) {
 			return "redirect:/login";
 		}
+		
+		
 			
 		String name = user.getUsername();
+		
+		boolean isNarucilac = false; 
+		boolean isPonudjac = false; 
+		
+		List<org.activiti.engine.identity.User> listaNarucilaca = identityService.createUserQuery().memberOfGroup("narucilac").list();
+		List<org.activiti.engine.identity.User> listaPonudjaca = identityService.createUserQuery().memberOfGroup("ponudjaci").list();
+		
+		for(org.activiti.engine.identity.User narucilac : listaNarucilaca)
+			if(narucilac.getId().equals(user.getUsername())) { isNarucilac = true; break; }
+		
+		for(org.activiti.engine.identity.User ponudjac : listaPonudjaca)
+			if(ponudjac.getId().equals(user.getUsername())) { isPonudjac = true; break; }
+								
+		model.addAttribute("username", name);
+		model.addAttribute("narucilac", isNarucilac);
+		model.addAttribute("ponudjac", isPonudjac);
 		model.addAttribute("username", name);
 		return "application/welcome";
 	}
