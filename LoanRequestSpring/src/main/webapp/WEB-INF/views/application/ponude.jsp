@@ -13,7 +13,8 @@
 	
 	<body>
 		<div>
-			<h1>Ponude</h1>
+		
+		<center><h1>Ponude</h1></center>
 			
 			<c:if test="${ponudjaci.size() == 0}">
 				<div class="message">

@@ -50,9 +50,11 @@
 		<property name="mailServerPort" value="1025" />  
 		<property name="customFormTypes">
    			 <list>
-    			  <bean class="activiti.spring.tender.customforms.ListForm"/>
-    			  <bean class="activiti.spring.tender.customforms.ListPravnici"/>
-     		      <bean class="activiti.spring.tender.customforms.ListStrucnjaci"/>
+    			      <bean class="activiti.spring.tender.customforms.ListFormType"/>
+     				  <bean class="activiti.spring.tender.customforms.ListPravniciType"/>
+     				  <bean class="activiti.spring.tender.customforms.ListStrucnjaciType"/>
+     				  <bean class="activiti.spring.tender.customforms.EmailFormType"/>
+     				  <bean class="activiti.spring.tender.customforms.UploadFormType"/>
    			 </list>
   </property>
 	</bean>

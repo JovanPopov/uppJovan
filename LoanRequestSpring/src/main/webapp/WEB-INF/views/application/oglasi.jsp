@@ -12,6 +12,9 @@
 	
 	
 	<body>
+	
+		<center><h1>Oglasi</h1></center>
+		
 	<div class="message">${message}</div>
 	<c:if test="${oglasOtvoreni == true}">
 		<div>

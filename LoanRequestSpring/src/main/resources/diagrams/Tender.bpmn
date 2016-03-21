@@ -13,7 +13,7 @@
         <activiti:formProperty id="cena" name="Procenjena vrednost" type="long" required="true"></activiti:formProperty>
         <activiti:formProperty id="brojLotova" name="Broj Lotova" type="long" default="1"></activiti:formProperty>
         <activiti:formProperty id="nazivNarucioca" name="Naziv narucioca" type="string" required="true"></activiti:formProperty>
-        <activiti:formProperty id="emailNarucioca" name="EmailNarucioca" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="emailNarucioca" name="EmailNarucioca" type="email" required="true"></activiti:formProperty>
         <activiti:formProperty id="predmetNabavke" name="Predmet nabavke" type="string"></activiti:formProperty>
       </extensionElements>
     </startEvent>
@@ -35,7 +35,7 @@
     </userTask>
     <userTask id="usertask3" name="Komisija priprema konkursnu dokumentaciju" activiti:candidateGroups="clanoviKomisije" activiti:formKey="executeTask">
       <extensionElements>
-        <activiti:formProperty id="dokum" name="Dokumentacija" type="boolean"></activiti:formProperty>
+        <activiti:formProperty id="dokum" name="Dokumentacija" type="upload"></activiti:formProperty>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow6" sourceRef="usertask2" targetRef="usertask3"></sequenceFlow>
@@ -61,7 +61,7 @@
       <userTask id="usertask6" name="Prijava" activiti:formKey="executeTask">
         <extensionElements>
           <activiti:formProperty id="nazivPonudjaca" name="Naziv ponudjaca" type="string" required="true"></activiti:formProperty>
-          <activiti:formProperty id="emailPonudjaca" name="EmailPonudjaca" type="string" required="true"></activiti:formProperty>
+          <activiti:formProperty id="emailPonudjaca" name="EmailPonudjaca" type="email" required="true"></activiti:formProperty>
           <activiti:formProperty id="ponuda" name="Ponuda" type="long" required="true"></activiti:formProperty>
           <activiti:formProperty id="upisan" name="Upisan" type="enum">
             <activiti:value id="ne" name="Nije u bazi"></activiti:value>
@@ -78,7 +78,7 @@
       <serviceTask id="servicetask2" name="Provera da li je u bazi" activiti:class="activity.spring.tender.serviceTasks.ProveraBazePonudjaca"></serviceTask>
       <userTask id="usertask7" name="Pondudjac podnosi dokumentaciju" activiti:assignee="${ponudjac}" activiti:formKey="executeTask">
         <extensionElements>
-          <activiti:formProperty id="dokumentacija" name="Dokumetnacija" type="boolean" default="false"></activiti:formProperty>
+          <activiti:formProperty id="dokumentacija" name="Dokumetnacija" type="boolean" expression="upload" default="false"></activiti:formProperty>
         </extensionElements>
       </userTask>
       <sequenceFlow id="flow23" sourceRef="exclusivegateway6" targetRef="usertask7">
@@ -165,7 +165,7 @@ execution.setVariable("oglasOtvoreniVidljiv", false);</script>
       <userTask id="usertask12" name="Zainteresovano lice se prijavljuje" activiti:formKey="executeTask">
         <extensionElements>
           <activiti:formProperty id="nazivPonudjaca" name="Naziv Ponudjaca" type="string" required="true"></activiti:formProperty>
-          <activiti:formProperty id="emailPonudjaca" name="EmailPonudjaca" type="string" required="true"></activiti:formProperty>
+          <activiti:formProperty id="emailPonudjaca" name="EmailPonudjaca" type="email" required="true"></activiti:formProperty>
           <activiti:taskListener event="create" class="activity.spring.tender.Listeners.PrijavaListener"></activiti:taskListener>
         </extensionElements>
       </userTask>
@@ -248,7 +248,7 @@ execution.setVariable("oglasKvalifikacijeVidljiv", false);</script>
       </sequenceFlow>
       <userTask id="usertask16" name="Kandidat prinosi dokumentaciju" activiti:assignee="${ponudjac}" activiti:formKey="executeTask">
         <extensionElements>
-          <activiti:formProperty id="potvrda" name="Potvrda" type="boolean"></activiti:formProperty>
+          <activiti:formProperty id="potvrda" name="Potvrda" type="upload"></activiti:formProperty>
         </extensionElements>
       </userTask>
       <userTask id="usertask17" name="Komiisija potvrdjuje" activiti:candidateGroups="clanoviKomisije" activiti:formKey="executeTask">

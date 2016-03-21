@@ -24,8 +24,6 @@
 					Naziv podnosioca zahteva:<br> <input type="text" required><br>
 					Razlog za podnosenje zahteva:<br> <textarea rows="4" cols="50" type="text" name="razlog" required></textarea><br>
 					Dokumentacija: <input type="file" >
-							
-	
 						
 					
 					

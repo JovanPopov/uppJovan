@@ -10,6 +10,9 @@
 			rel="stylesheet" />
 	</head>
 	<body>
+	
+		<center><h1>Sajt za sprovodjenje postupka javne nabavke</h1></center>
+		
 		<h3>Dobrodošli ${username}!</h3>
 		<div class="message">${message}</div>
 		<a href="./tasksList">Pregled zadataka</a>

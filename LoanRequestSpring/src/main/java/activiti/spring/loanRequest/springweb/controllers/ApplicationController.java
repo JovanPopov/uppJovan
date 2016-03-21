@@ -127,7 +127,7 @@ public class ApplicationController {
 				
 				String id = procDef.getId();
 				
-				//ovde dodajem listu
+				//liste za custom forme
 				
 					List<Ponudjac> ponudjaci=(List<Ponudjac>) runtimeService.getVariable(id,  "ponudjaciSortirano");				
 					model.addAttribute("ponudjaci", ponudjaci);

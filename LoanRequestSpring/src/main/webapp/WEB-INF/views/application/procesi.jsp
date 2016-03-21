@@ -14,7 +14,7 @@
 	<body>
 	<div class="message">${message}</div>
 	
-	
+	<center><h1>Pregled stanja pokrenutih procesa</h1></center>
 	
 	
 		<div>

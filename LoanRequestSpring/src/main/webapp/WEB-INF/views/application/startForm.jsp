@@ -32,10 +32,29 @@
 							<label>${formProperty.name}</label>
 	
 							<c:if
-								test="${formProperty.type.name.equals('string') || formProperty.type.name.equals('long')}">
+								test="${formProperty.type.name.equals('string')}">
 								<input type="text"
 									<c:if test="${formProperty.writable==true}"> name="${formProperty.id}"</c:if>
 									<c:if test="${formProperty.writable==false}"> disabled </c:if>
+									required
+									value="${formProperty.value}" />
+							</c:if>
+							
+							<c:if
+								test="${formProperty.type.name.equals('long')}">
+								<input type="number"
+									<c:if test="${formProperty.writable==true}"> name="${formProperty.id}"</c:if>
+									<c:if test="${formProperty.writable==false}"> disabled </c:if>
+									required
+									value="${formProperty.value}" />
+							</c:if>
+							
+							<c:if
+								test="${formProperty.type.name.equals('email')}">
+								<input type="email"
+									<c:if test="${formProperty.writable==true}"> name="${formProperty.id}"</c:if>
+									<c:if test="${formProperty.writable==false}"> disabled </c:if>
+									required
 									value="${formProperty.value}" />
 							</c:if>
 	
@@ -44,6 +63,13 @@
 									<c:if test="${formProperty.writable==true}"> name="${formProperty.id}"</c:if>
 									<c:if test="${formProperty.writable==false}"> disabled </c:if>
 									<c:if test="${formProperty.value==true}">checked </c:if> />
+							</c:if>
+							
+							<c:if test="${formProperty.type.name.equals('upload')}">
+								<input type="file"
+									<c:if test="${formProperty.writable==true}"> name="${formProperty.id}"</c:if>
+									<c:if test="${formProperty.writable==false}"> disabled </c:if>
+									name="Upload file" />
 							</c:if>
 	
 							<c:if test="${formProperty.type.name.equals('enum')}">
