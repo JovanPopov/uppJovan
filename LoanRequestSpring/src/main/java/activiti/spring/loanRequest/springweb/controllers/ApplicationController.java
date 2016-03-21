@@ -43,8 +43,6 @@ public class ApplicationController {
 	private RuntimeService runtimeService;
 	@Autowired
 	private IdentityService identityService;
-	
-	public static String pid;
 
 	/* API */
 	
@@ -177,8 +175,7 @@ public class ApplicationController {
 		List<FormProperty> formProperties = formData.getFormProperties();
 		
 		if (formProperties.size() == 0) {
-			ProcessInstance process = runtimeService.startProcessInstanceByKey("loanRequest");
-			pid = process.getId();			
+			ProcessInstance process = runtimeService.startProcessInstanceByKey("loanRequest");		
 			String message = "Nova instanca je uspešno pokrenuta";
 			model.addAttribute("message", message);
 			return printWelcome(model);

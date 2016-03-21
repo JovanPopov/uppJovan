@@ -17,3 +17,7 @@ type: assignment
 id: kandidati   
 name: Kandidati
 type: assignment
+---
+id: ponudjaci   
+name: Ponudjaci
+type: assignment

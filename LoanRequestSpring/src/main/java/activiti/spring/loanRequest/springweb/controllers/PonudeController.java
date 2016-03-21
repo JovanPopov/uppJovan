@@ -20,23 +20,17 @@ public class PonudeController {
 	
 	@RequestMapping(value="/ponude")
 	public String ponude(ModelMap model){
-		
-		String pid=processInstance();
-		
-		List<Ponudjac> ponudjaci=(List<Ponudjac>) runtimeService.getVariable(pid, "ponudjaciSortirano");
-		model.addAttribute("ponudjaci",ponudjaci);
-		
-		
-		return "application/ponude";
-		
-	}
-	
-	private String processInstance(){
+		try{
 		
 		List<ProcessInstance> procDefl = runtimeService.createProcessInstanceQuery().processDefinitionKey("loanRequest").orderByProcessInstanceId().desc().list();
 		ProcessInstance procDef=procDefl.get(0);
+		String pid=procDef.getId();
 		
-		return procDef.getId();
+		List<Ponudjac> ponudjaci=(List<Ponudjac>) runtimeService.getVariable(pid, "ponudjaciSortirano");
+		model.addAttribute("ponudjaci",ponudjaci);
+		}catch(Exception e){}
+		
+		return "application/ponude";
 		
 	}
 

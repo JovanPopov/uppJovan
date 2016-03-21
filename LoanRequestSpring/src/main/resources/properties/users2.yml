@@ -1,7 +1,7 @@
 id: pera
 firstName: Petar
 lastName: Petrovic
-email: pera@something.com
+email: pera@localhost.com
 password: pera
 groups:
  - id: clanoviKomisije
@@ -10,23 +10,31 @@ groups:
 id: zika
 firstName: Zika
 lastName: Zikic
-email: zika@something.com
+email: zika@localhost.com
 password: zika
 groups:
  - id: pravnici
 ---
-id: mita
-firstName: Mita
-lastName: Mitic
-email: mita@something.com
-password: mita
+id: zeljko
+firstName: Zeljko
+lastName: Zeljkovic
+email: zeljko@localhost.com
+password: zeljko
 groups:
  - id: pravnici
+---
+id: david
+firstName: David
+lastName: Davidovic
+email: david@localhost.com
+password: david
+groups:
+ - id: strucnjaci
 ---
 id: steva
 firstName: Steva
 lastName: Stevic
-email: steva@something.com
+email: steva@localhost.com
 password: steva
 groups:
  - id: strucnjaci
@@ -34,9 +42,71 @@ groups:
 id: bora
 firstName: Bora
 lastName: Boric
-email: bora@something.com
+email: bora@localhost.com
 password: bora
 groups:
  - id: strucnjaci
- 
- 
+---
+id: bojan
+firstName: Bojan
+lastName: Bojanovic
+email: bojan@localhost.com
+password: bojan
+groups:
+ - id: strucnjaci
+---
+id: dusan
+firstName: Dusan
+lastName: Dusanovic
+email: dusan@localhost.com
+password: dusan
+groups:
+ - id: ponudjaci
+---
+id: boban
+firstName: Boban
+lastName: Bobanov
+email: boban@localhost.com
+password: boban
+groups:
+ - id: ponudjaci
+---
+id: veljko
+firstName: Veljko
+lastName: Veljkov
+email: veljko@localhost.com
+password: veljko
+groups:
+ - id: ponudjaci
+---
+id: mita
+firstName: Mita
+lastName: Mitic
+email: mita@localhost.com
+password: mita
+groups:
+ - id: ponudjaci
+---
+id: igor
+firstName: Igor
+lastName: Igorev
+email: igor@localhost.com
+password: igor
+groups:
+ - id: ponudjaci
+---
+id: marko
+firstName: Marko
+lastName: Markovic
+email: marko@localhost.com
+password: marko
+groups:
+ - id: ponudjaci
+---
+id: goran
+firstName: Goran
+lastName: Goranovic
+email: goran@localhost.com
+password: goran
+groups:
+ - id: ponudjaci

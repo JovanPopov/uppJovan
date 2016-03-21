@@ -25,9 +25,9 @@
     </sequenceFlow>
     <userTask id="usertask1" name="Formiranje komisije" activiti:candidateGroups="narucilac" activiti:formKey="executeTask">
       <extensionElements>
-        <activiti:formProperty id="clanKomisije1" name="Clan komisije - Pravnici" type="listPravnici"></activiti:formProperty>
-        <activiti:formProperty id="clanKomisije2" name="Clan Komisije - Strucnjaci" type="listStrucnjaci"></activiti:formProperty>
-        <activiti:formProperty id="clanKomisije3" name="Clan Komisije - Strucnjaci" type="listStrucnjaci"></activiti:formProperty>
+        <activiti:formProperty id="clanKomisije1" name="Clan komisije (pravni fakultet)" type="listPravnici"></activiti:formProperty>
+        <activiti:formProperty id="clanKomisije2" name="Clan Komisije(Strucno obrazovanje iz oblasti)" type="listStrucnjaci"></activiti:formProperty>
+        <activiti:formProperty id="clanKomisije3" name="Clan Komisije(Strucno obrazovanje iz oblasti)" type="listStrucnjaci"></activiti:formProperty>
       </extensionElements>
     </userTask>
     <userTask id="usertask2" name="Clan komisije podpisuje izjavu" activiti:assignee="${clanKomisije}">
@@ -111,7 +111,7 @@
       </userTask>
       <sequenceFlow id="flow40" sourceRef="servicetask4" targetRef="usertask10"></sequenceFlow>
       <serviceTask id="servicetask4" name="Rangiranje ponuda" activiti:class="activity.spring.tender.serviceTasks.RangiranjePonuda"></serviceTask>
-      <userTask id="usertask11" name="Ponudjac podpisuje ugovor" activiti:assignee="${odabranPonudjac}" activiti:formKey="executeTask"></userTask>
+      <userTask id="usertask11" name="Ponudjac potpisuje ugovor" activiti:assignee="${odabranPonudjac}" activiti:formKey="executeTask"></userTask>
       <sequenceFlow id="flow41" sourceRef="usertask10" targetRef="usertask11"></sequenceFlow>
       <endEvent id="endevent3" name="End"></endEvent>
       <sequenceFlow id="flow42" sourceRef="usertask11" targetRef="endevent3"></sequenceFlow>
@@ -317,7 +317,7 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
     <exclusiveGateway id="exclusivegateway13" name="Exclusive Gateway"></exclusiveGateway>
     <endEvent id="endevent6" name="End"></endEvent>
     <sequenceFlow id="flow69" sourceRef="exclusivegateway13" targetRef="endevent6">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${brojKandidata<1}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${brojKandidata<3}]]></conditionExpression>
     </sequenceFlow>
     <userTask id="usertask14" name="Narucilac pokrece restriktivni postupak" activiti:candidateGroups="narucilac" activiti:formKey="executeTask"></userTask>
     <exclusiveGateway id="exclusivegateway19" name="Exclusive Gateway"></exclusiveGateway>
@@ -330,7 +330,7 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${odbijen}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow102" sourceRef="exclusivegateway13" targetRef="usertask14">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${brojKandidata>=1}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${brojKandidata>=3}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow103" sourceRef="usertask14" targetRef="restriktivniProces"></sequenceFlow>
     <boundaryEvent id="boundarytimer2" name="Timer" attachedToRef="usertask14" cancelActivity="true">
@@ -342,7 +342,7 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
     <sequenceFlow id="flow106" sourceRef="usertask20" targetRef="otvoreniProces"></sequenceFlow>
     <endEvent id="endevent10" name="End"></endEvent>
     <sequenceFlow id="flow111" sourceRef="boundarytimer2" targetRef="endevent10"></sequenceFlow>
-    <userTask id="usertask20" name="Narucilac poziva(nabavka male vrednosti)" activiti:candidateGroups="narucilac"></userTask>
+    <userTask id="usertask20" name="Narucilac poziva na nabavku male vrednosti" activiti:candidateGroups="narucilac"></userTask>
     <serviceTask id="servicetask15" name="Postavljanje komisije" activiti:class="activity.spring.tender.serviceTasks.PostavljanjeKomisije"></serviceTask>
     <sequenceFlow id="flow148" sourceRef="usertask1" targetRef="servicetask15"></sequenceFlow>
     <endEvent id="endevent11" name="End"></endEvent>
@@ -350,10 +350,11 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
     <serviceTask id="servicetask16" name="Inicijalizacija promenljivih" activiti:class="activity.spring.tender.serviceTasks.Inicijalizacija"></serviceTask>
     <sequenceFlow id="flow169" sourceRef="servicetask16" targetRef="servicetask1"></sequenceFlow>
     <sequenceFlow id="flow170" sourceRef="startevent1" targetRef="servicetask16"></sequenceFlow>
-    <sequenceFlow id="flow174" sourceRef="exclusivegateway1" targetRef="exclusivegateway2">
+    <sequenceFlow id="flow174" sourceRef="exclusivegateway1" targetRef="usertask1">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${cena>400000}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow176" sourceRef="servicetask15" targetRef="usertask2"></sequenceFlow>
+    <sequenceFlow id="flow177" sourceRef="usertask4" targetRef="exclusivegateway2"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_loanRequest">
     <bpmndi:BPMNPlane bpmnElement="loanRequest" id="BPMNPlane_loanRequest">
@@ -376,7 +377,7 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
         <omgdc:Bounds height="60.0" width="105.0" x="713.0" y="117.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
-        <omgdc:Bounds height="71.0" width="105.0" x="832.0" y="116.0"></omgdc:Bounds>
+        <omgdc:Bounds height="86.0" width="105.0" x="834.0" y="110.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
         <omgdc:Bounds height="71.0" width="105.0" x="961.0" y="115.0"></omgdc:Bounds>
@@ -502,7 +503,7 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
         <omgdc:Bounds height="300.0" width="1565.0" x="635.0" y="1300.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="startevent4" id="BPMNShape_startevent4">
-        <omgdc:Bounds height="35.0" width="35.0" x="651.0" y="1436.0"></omgdc:Bounds>
+        <omgdc:Bounds height="35.0" width="35.0" x="650.0" y="1412.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="usertask15" id="BPMNShape_usertask15">
         <omgdc:Bounds height="65.0" width="105.0" x="991.0" y="1397.0"></omgdc:Bounds>
@@ -532,7 +533,7 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
         <omgdc:Bounds height="35.0" width="35.0" x="2141.0" y="1433.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="servicetask14" id="BPMNShape_servicetask14">
-        <omgdc:Bounds height="55.0" width="105.0" x="766.0" y="1530.0"></omgdc:Bounds>
+        <omgdc:Bounds height="58.0" width="105.0" x="660.0" y="1473.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="eventgateway4" id="BPMNShape_eventgateway4">
         <omgdc:Bounds height="40.0" width="40.0" x="735.0" y="1406.0"></omgdc:Bounds>
@@ -541,13 +542,13 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
         <omgdc:Bounds height="35.0" width="35.0" x="975.0" y="1530.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
-        <omgdc:Bounds height="61.0" width="111.0" x="1081.0" y="1527.0"></omgdc:Bounds>
+        <omgdc:Bounds height="61.0" width="111.0" x="1095.0" y="1517.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="exclusivegateway29" id="BPMNShape_exclusivegateway29">
         <omgdc:Bounds height="40.0" width="40.0" x="1641.0" y="1433.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="scripttask7" id="BPMNShape_scripttask7">
-        <omgdc:Bounds height="55.0" width="105.0" x="703.0" y="1302.0"></omgdc:Bounds>
+        <omgdc:Bounds height="55.0" width="105.0" x="703.0" y="1315.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="servicetask8" id="BPMNShape_servicetask8">
         <omgdc:Bounds height="55.0" width="105.0" x="1721.0" y="1423.0"></omgdc:Bounds>
@@ -583,7 +584,7 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
         <omgdc:Bounds height="35.0" width="35.0" x="759.0" y="1244.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="usertask20" id="BPMNShape_usertask20">
-        <omgdc:Bounds height="71.0" width="105.0" x="1491.0" y="115.0"></omgdc:Bounds>
+        <omgdc:Bounds height="88.0" width="110.0" x="1491.0" y="115.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="servicetask15" id="BPMNShape_servicetask15">
         <omgdc:Bounds height="55.0" width="105.0" x="584.0" y="119.0"></omgdc:Bounds>
@@ -592,7 +593,7 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
         <omgdc:Bounds height="35.0" width="35.0" x="2304.0" y="201.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="servicetask16" id="BPMNShape_servicetask16">
-        <omgdc:Bounds height="55.0" width="105.0" x="61.0" y="119.0"></omgdc:Bounds>
+        <omgdc:Bounds height="67.0" width="105.0" x="61.0" y="119.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
         <omgdi:waypoint x="410.0" y="129.0"></omgdi:waypoint>
@@ -600,15 +601,15 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
         <omgdi:waypoint x="818.0" y="147.0"></omgdi:waypoint>
-        <omgdi:waypoint x="832.0" y="151.0"></omgdi:waypoint>
+        <omgdi:waypoint x="834.0" y="153.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
-        <omgdi:waypoint x="937.0" y="151.0"></omgdi:waypoint>
+        <omgdi:waypoint x="939.0" y="153.0"></omgdi:waypoint>
         <omgdi:waypoint x="961.0" y="150.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
         <omgdi:waypoint x="1190.0" y="151.0"></omgdi:waypoint>
-        <omgdi:waypoint x="1491.0" y="150.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1491.0" y="159.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="42.0" width="100.0" x="1305.0" y="162.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
@@ -849,7 +850,7 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
         <omgdi:waypoint x="801.0" y="1426.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow135" id="BPMNEdge_flow135">
-        <omgdi:waypoint x="818.0" y="1530.0"></omgdi:waypoint>
+        <omgdi:waypoint x="712.0" y="1473.0"></omgdi:waypoint>
         <omgdi:waypoint x="755.0" y="1446.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow136" id="BPMNEdge_flow136">
@@ -859,7 +860,7 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow137" id="BPMNEdge_flow137">
         <omgdi:waypoint x="1010.0" y="1547.0"></omgdi:waypoint>
-        <omgdi:waypoint x="1081.0" y="1557.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1095.0" y="1547.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow139" id="BPMNEdge_flow139">
         <omgdi:waypoint x="1681.0" y="1453.0"></omgdi:waypoint>
@@ -869,15 +870,14 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
         <omgdi:waypoint x="1661.0" y="1433.0"></omgdi:waypoint>
         <omgdi:waypoint x="1659.0" y="1324.0"></omgdi:waypoint>
         <omgdi:waypoint x="1229.0" y="1324.0"></omgdi:waypoint>
-        <omgdi:waypoint x="808.0" y="1329.0"></omgdi:waypoint>
+        <omgdi:waypoint x="808.0" y="1342.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow160" id="BPMNEdge_flow160">
-        <omgdi:waypoint x="668.0" y="1471.0"></omgdi:waypoint>
-        <omgdi:waypoint x="668.0" y="1557.0"></omgdi:waypoint>
-        <omgdi:waypoint x="766.0" y="1557.0"></omgdi:waypoint>
+        <omgdi:waypoint x="667.0" y="1447.0"></omgdi:waypoint>
+        <omgdi:waypoint x="712.0" y="1473.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow161" id="BPMNEdge_flow161">
-        <omgdi:waypoint x="755.0" y="1357.0"></omgdi:waypoint>
+        <omgdi:waypoint x="755.0" y="1370.0"></omgdi:waypoint>
         <omgdi:waypoint x="755.0" y="1406.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow162" id="BPMNEdge_flow162">
@@ -885,8 +885,8 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
         <omgdi:waypoint x="1641.0" y="1453.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow163" id="BPMNEdge_flow163">
-        <omgdi:waypoint x="1192.0" y="1557.0"></omgdi:waypoint>
-        <omgdi:waypoint x="1659.0" y="1556.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1206.0" y="1547.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1660.0" y="1547.0"></omgdi:waypoint>
         <omgdi:waypoint x="1661.0" y="1473.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow87" id="BPMNEdge_flow87">
@@ -937,7 +937,7 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
         <omgdi:waypoint x="2321.0" y="335.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow106" id="BPMNEdge_flow106">
-        <omgdi:waypoint x="1543.0" y="186.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1546.0" y="203.0"></omgdi:waypoint>
         <omgdi:waypoint x="1396.0" y="366.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow111" id="BPMNEdge_flow111">
@@ -954,21 +954,24 @@ execution.setVariable("oglasRestriktivniVidljiv", false);</script>
         <omgdi:waypoint x="2321.0" y="236.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow169" id="BPMNEdge_flow169">
-        <omgdi:waypoint x="166.0" y="146.0"></omgdi:waypoint>
+        <omgdi:waypoint x="166.0" y="152.0"></omgdi:waypoint>
         <omgdi:waypoint x="181.0" y="151.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow170" id="BPMNEdge_flow170">
         <omgdi:waypoint x="36.0" y="151.0"></omgdi:waypoint>
-        <omgdi:waypoint x="61.0" y="146.0"></omgdi:waypoint>
+        <omgdi:waypoint x="61.0" y="152.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow174" id="BPMNEdge_flow174">
-        <omgdi:waypoint x="410.0" y="169.0"></omgdi:waypoint>
-        <omgdi:waypoint x="787.0" y="254.0"></omgdi:waypoint>
-        <omgdi:waypoint x="1170.0" y="171.0"></omgdi:waypoint>
+        <omgdi:waypoint x="430.0" y="149.0"></omgdi:waypoint>
+        <omgdi:waypoint x="459.0" y="146.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow176" id="BPMNEdge_flow176">
         <omgdi:waypoint x="689.0" y="146.0"></omgdi:waypoint>
         <omgdi:waypoint x="713.0" y="147.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow177" id="BPMNEdge_flow177">
+        <omgdi:waypoint x="1066.0" y="150.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1150.0" y="151.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

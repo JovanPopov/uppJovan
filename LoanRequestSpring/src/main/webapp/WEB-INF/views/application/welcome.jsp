@@ -26,7 +26,7 @@
 		<a href="./zalba">Zastita prava</a>
 		<br />
 		<br />
-		<a href="./procesi">Proces</a>
+		<a href="./procesi">Pregled procesa</a>
 		<br />		
 		<br />
 		<a href="<c:url value="/j_spring_security_logout" />"> Logout</a>

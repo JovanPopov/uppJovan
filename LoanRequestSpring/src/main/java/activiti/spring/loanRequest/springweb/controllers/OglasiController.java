@@ -2,11 +2,8 @@ package activiti.spring.loanRequest.springweb.controllers;
 
 import java.util.List;
 
-import org.activiti.engine.FormService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
-import org.activiti.engine.impl.pvm.delegate.ActivityExecution;
-import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.Execution;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,20 +25,13 @@ public class OglasiController {
 	@Autowired
 	private RuntimeService runtimeService;
 	
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/oglasi")
 	private String Oglasi(ModelMap model){
-		//try{
-		User user;
-		//String pid = ApplicationController.pid;
-		//ProcessDefinition procDef = repositoryService.createProcessDefinitionQuery().processDefinitionKey("loanRequest").latestVersion().singleResult();
-		//ProcessDefinition procDef = repositoryService.createProcessDefinitionQuery().deploymentId(ApplicationController.pid).singleResult();
 		
 		
+		
+		try{			
 		String pid = processInstance();
-		//ovo radi takodje, za jednu instancu
-		//String pid = runtimeService.createProcessInstanceQuery().processDefinitionKey("loanRequest").singleResult().getId();
-		
 		
 		boolean oglasotvoreni= (Boolean) runtimeService.getVariable(pid, "oglasOtvoreniVidljiv");
 		boolean oglasKvalifikacije=(Boolean) runtimeService.getVariable(pid, "oglasKvalifikacijeVidljiv");
@@ -52,11 +42,12 @@ public class OglasiController {
 		model.addAttribute("oglasOtvoreni",oglasotvoreni);
 		model.addAttribute("oglasKvalifikacije",oglasKvalifikacije);
 		model.addAttribute("oglasRestriktivni",oglasRestriktivni);
-		//}catch(Exception e){
+		}catch(Exception ex){
 			
-		//}
+		}
 		return "application/oglasi";
 	}
+	
 	//prijava na otvoreni
 	@RequestMapping(value="/oglasi/prijavaOtvoreni", method=RequestMethod.GET)
 	public String OglasiOtvoreni(ModelMap model){
@@ -74,8 +65,6 @@ public class OglasiController {
 		
 		String id = user.getUsername();
 		List<Ponudjac> ponudjaciubazi=(List<Ponudjac>) runtimeService.getVariable(pid, "ponudjaci");
-		//user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		//String id = user.getUsername();
 		for(Ponudjac pon:ponudjaciubazi){
 			if(pon.getId().equals(id)) {
 				message = "Ne mozete se prijaviti, vec se nalazite na listi!";
@@ -95,8 +84,7 @@ public class OglasiController {
 		model.addAttribute("message", message);
 		return Oglasi(model);
 		
-		//return "application/oglasi";
-		
+				
 		
 	}
 	
@@ -115,8 +103,6 @@ public class OglasiController {
 		
 		String id = user.getUsername();
 		List<Ponudjac> ponudjaciubazi=(List<Ponudjac>) runtimeService.getVariable(pid, "kandidati");
-		//user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		//String id = user.getUsername();
 		for(Ponudjac pon:ponudjaciubazi){
 			if(pon.getId().equals(id)) {
 				message = "Ne mozete se prijaviti, vec se nalazite na listi!";
