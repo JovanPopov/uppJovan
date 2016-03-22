@@ -224,7 +224,7 @@ public class ApplicationController {
 		for(org.activiti.engine.identity.User ponudjac : listaPonudjaca)
 			if(ponudjac.getId().equals(user.getUsername())) { isPonudjac = true; break; }
 								
-		model.addAttribute("username", name);
+		
 		model.addAttribute("narucilac", isNarucilac);
 		model.addAttribute("ponudjac", isPonudjac);
 		model.addAttribute("username", name);

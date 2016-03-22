@@ -80,6 +80,4 @@
 		
 	<bean id="myUserDetailsService"
 		class="activiti.spring.loanRequest.springweb.services.ActivitiUserDetailService" />
-	<bean id="loanService" 
-		class="activiti.spring.loanRequest.springweb.services.LoanService" />
 </beans>
